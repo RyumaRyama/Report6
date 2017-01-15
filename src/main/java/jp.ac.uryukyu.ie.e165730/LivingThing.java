@@ -1,11 +1,12 @@
 package jp.ac.uryukyu.ie.e165730;
-
+import java.util.Random;
 
 public class LivingThing {
     private String name;
     private int hitPoint;
     private int attack;
     private boolean dead;
+    private Random ran = new Random();
 
     /**
      * コンストラクタ。名前、最大HP、攻撃力を指定する。
@@ -72,5 +73,19 @@ public class LivingThing {
         if( hitPoint <= 0 ) {
             dead = true;
         }
+    }
+
+    /**
+     * 引数で受け取った確率で計算するメソッド
+     * @param odds 強攻撃する確率(%)
+     * @return int '1'なら強攻撃，'0'なら普通の攻撃
+     */
+    public boolean randAttack(int odds){
+        int rand;
+        rand = ran.nextInt(100);
+        if(rand < odds)
+            return true;
+
+        return false;
     }
 }
